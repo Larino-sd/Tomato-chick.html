@@ -373,6 +373,158 @@
             -webkit-text-fill-color: transparent;
             font-size: 1.5rem;
         }
+
+        /* ========== الأكواد الجديدة المضافة لتفاصيل المشروع التفاعلية ========== */
+        .project-details-section {
+            margin: 3rem 0 1.5rem 0;
+            text-align: center;
+        }
+
+        .project-details-title {
+            font-size: 1.6rem;
+            color: var(--primary-glow);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 170, 0.4);
+        }
+
+        .info-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            width: 100%;
+        }
+
+        .info-btn {
+            background: rgba(15, 25, 45, 0.8);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            border-radius: 20px;
+            padding: 1.2rem 1rem;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .info-btn:hover {
+            background: rgba(0, 255, 170, 0.12);
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .info-btn-icon {
+            font-size: 1.8rem;
+        }
+
+        /* تصميم النافذة المنبثقة (Modal) */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(10, 15, 30, 0.93);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .custom-modal-content {
+            background-color: #0d1627;
+            border: 2px solid var(--primary-glow);
+            box-shadow: 0 0 35px rgba(0, 255, 170, 0.4);
+            border-radius: 30px;
+            width: 100%;
+            max-width: 650px;
+            padding: 2.5rem;
+            color: var(--text-primary);
+            position: relative;
+            animation: modalSlideIn 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.15);
+            direction: rtl;
+            text-align: right;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .custom-modal-close {
+            color: var(--error-glow);
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            line-height: 1;
+        }
+
+        .custom-modal-close:hover {
+            color: #ff1a40;
+            transform: scale(1.15);
+        }
+
+        .modal-body-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-top: 1rem;
+        }
+
+        .modal-body-content h2 {
+            color: var(--primary-glow);
+            margin-bottom: 1.2rem;
+            border-bottom: 1px dashed rgba(0, 255, 170, 0.3);
+            padding-bottom: 0.6rem;
+            font-size: 1.6rem;
+        }
+
+        .modal-body-content h3 {
+            color: var(--secondary-glow);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .modal-body-content p {
+            margin-bottom: 1rem;
+        }
+
+        .modal-body-content ul, .modal-body-content ol {
+            margin-right: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .modal-body-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body-content a {
+            color: var(--secondary-glow);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dashed var(--secondary-glow);
+            transition: 0.2s;
+        }
+
+        .modal-body-content a:hover {
+            color: #fff;
+            border-bottom-style: solid;
+            text-shadow: 0 0 10px var(--secondary-glow);
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
@@ -415,6 +567,36 @@
             </div>
         </div>
 
+        <div class="project-details-section">
+            <h3 class="project-details-title">📁 استكشف تفاصيل المشروع والتقنيات</h3>
+            <div class="info-buttons-grid">
+                <button class="info-btn" onclick="openCustomModal('btn1')">
+                    <span class="info-btn-icon">📝</span>
+                    <span>المقدمة</span>
+                </button>
+                <button class="info-btn" onclick="openCustomModal('btn2')">
+                    <span class="info-btn-icon">🔬</span>
+                    <span>الجانب التقني</span>
+                </button>
+                <button class="info-btn" onclick="openCustomModal('btn3')">
+                    <span class="info-btn-icon">🌐</span>
+                    <span>المنصة والمعمارية</span>
+                </button>
+                <button class="info-btn" onclick="openCustomModal('btn4')">
+                    <span class="info-btn-icon">⚙️</span>
+                    <span>محرك التشغيل</span>
+                </button>
+                <button class="info-btn" onclick="openCustomModal('btn5')">
+                    <span class="info-btn-icon">📱</span>
+                    <span>تفاصيل الواجهة</span>
+                </button>
+                <button class="info-btn" onclick="openCustomModal('btn6')">
+                    <span class="info-btn-icon">🛠️</span>
+                    <span>التحديات التقنية</span>
+                </button>
+            </div>
+        </div>
+
         <div class="footer">
             <div class="footer-note">
                 ⚠️ ملاحظة: هذا النموذج لا يستطيع العمل في البيئة المفتوحة بكل دقة. يرجى استخدامه في ظروف معملية.
@@ -422,6 +604,14 @@
             <div class="designer-signature">
                 تصميم <span>Larino</span> || 2026
             </div>
+        </div>
+    </div>
+
+    <div id="customInfoModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <span class="custom-modal-close" onclick="closeCustomModal()">&times;</span>
+            <div id="modalBodyContent" class="modal-body-content">
+                </div>
         </div>
     </div>
 
@@ -531,6 +721,103 @@
                 resultsGrid.innerHTML = html;
             };
         }
+
+        // =======================================================
+        // منطق النوافذ المنبثقة لعرض معلومات وأزرار المشروع
+        // =======================================================
+        const customInfoModal = document.getElementById('customInfoModal');
+        const modalBodyContent = document.getElementById('modalBodyContent');
+
+        const modalContents = {
+            btn1: {
+                html: `
+                    <h2>مقدمة عن المشروع 📝</h2>
+                    <p>تطبيق ويب تفاعلي يعتمد على تشخيص أمراض أوراق الطماطم فورياً باستخدام الصور المحفوظة في الجهاز. تم تصميم المشروع ليعمل بالكامل داخل متصفح المستخدم لضمان الخصوصية والسرعة.</p>
+                    <p style="margin-top: 20px; font-weight: bold;">🔗 إذا كنت تريد تجربة المشروع، اضغط هنا:</p>
+                    <p><a href="https://larino-sd.github.io/Tomato-chick.html/" target="_blank">رابط موقع مشروع Tomato Chick</a></p>
+                `
+            },
+            btn2: {
+                html: `
+                    <h2>الجانب التقني والنموذج 🔬</h2>
+                    <h3 style="color: var(--secondary-glow);">1. تدريب النموذج والبيانات (Model & Dataset)</h3>
+                    <p><strong>مصدر البيانات:</strong> تم تدريب النموذج باستخدام مجموعة بيانات من منصة Kaggle تحتوي على 10,000 صورة.</p>
+                    <p><strong>تصنيف الأمراض:</strong> النموذج قادر على التعرف على 9 أمراض مختلفة تصيب أوراق الطماطم بالإضافة إلى الأوراق السليمة، بمعدل 1,000 صورة لكل تصنيف لضمان التوازن والدقة أثناء التدريب.</p>
+                    <h3 style="color: var(--primary-glow); margin-top: 15px;">الأمراض التي يستطيع أن يكشف عنها هي:</h3>
+                    <ol style="line-height: 1.8; margin-right: 25px;">
+                        <li>إصابة سوس العنكبوت الأحمر ذو البقعتين.</li>
+                        <li>تبقع أوراق سبتوريا.</li>
+                        <li>عفن أوراق الطماطم.</li>
+                        <li>اللفحة المتأخرة.</li>
+                        <li>اللفحة المبكرة.</li>
+                        <li>البقعة البكتيرية.</li>
+                        <li>فيروس تجعد واصفرار أوراق الطماطم.</li>
+                        <li>فيروس موزاييك.</li>
+                        <li>بقعة الهدف.</li>
+                    </ol>
+                `
+            },
+            btn3: {
+                html: `
+                    <h2>المنصة والمعمارية 🌐</h2>
+                    <p>تم تدريب وتطوير النموذج باستخدام منصة <strong>Google Teachable Machine</strong> المبنية فوق نموذج <strong>MobileNet</strong>، وهي معمارية خفيفة الوزن ومصممة خصيصاً للعمل بكفاءة على الأجهزة الذكية والمتصفحات ذات الموارد المحدودة.</p>
+                    <p>يعتمد نموذج MobileNet على أوزان مسبقة التدريب، ونحن نقوم بتدريب الطبقات الأخيرة من النموذج.</p>
+                    <h3 style="color: var(--secondary-glow); margin-top: 20px;">🔗 رابط نموذج Teachable Machine بعد تصديره بصيغة TensorFlow.js:</h3>
+                    <p style="margin-top: 10px;"><a href="https://teachablemachine.withgoogle.com/models/CEHWThrLc/" target="_blank">رابط نموذج Teachable Machine الخاص بالمشروع</a></p>
+                `
+            },
+            btn4: {
+                html: `
+                    <h2>محرك التشغيل (TensorFlow.js) ⚙️</h2>
+                    <h3 style="color: var(--secondary-glow);">2. محرك التشغيل TensorFlow.js وهي مكتبة مفتوحة المصدر:</h3>
+                    <p>يتم تصدير وتشغيل النموذج بصيغة TensorFlow.js، مما ينقل معالجة البيانات إلى متصفح العميل.</p>
+                    <p>تغلبت المكتبة على قيود سرعة لغة JavaScript من خلال:</p>
+                    <ul style="line-height: 1.8; margin-right: 25px;">
+                        <li><strong>تسريع وحدة الرسوميات (GPU):</strong> توجيه العمليات الحسابية المعقدة مباشرة إلى وحدة معالجة الرسومات (GPU)، مما يتيح معالجة سريعة للحسابات.</li>
+                        <li><strong>تقنية WebAssembly (WASM):</strong> في حال ضعف كرت الشاشة أو عدم دعمه، يتحول التشغيل تلقائياً إلى معمارية WASM لضمان تنفيذ العمليات بسرعة ممتازة مباشرة على المعالج (CPU).</li>
+                    </ul>
+                `
+            },
+            btn5: {
+                html: `
+                    <h2>تفاصيل الواجهة الأمامية 📱</h2>
+                    <p>أما الواجهة الأمامية التي تتفاعل مع المستخدم:</p>
+                    <p style="line-height: 1.8;">صُممت واجهة الويب التفاعلية للمشروع بالاستعانة بالذكاء الاصطناعي <strong>Gemini</strong> للحصول على تصميم مقبول ومستجيب بالكامل مع الهواتف والشاشات المختلفة.</p>
+                `
+            },
+            btn6: {
+                html: `
+                    <h2>تحديات تقنية وحلول مستمرة 🛠️</h2>
+                    <h3 style="color: var(--error-glow);">1. مشكلة المدخلات العشوائية:</h3>
+                    <p><strong>التحدي:</strong> النموذج أحياناً يميل إلى تصنيف الأشياء غير المرتبطة بالنباتات مثل الطاولات أو الأثاث كأوراق طماطم مريضة أو سليمة بناءً على أقرب احتمال حسابي.</p>
+                    <p><strong>ولكن لكل مشكلة حل:</strong> نوصي المستخدمين بالتشغيل في بيئة ذات خلفية رمادية أو أي لون، شرط ألا يظهر خلفها شيء، لتحسين الإضاءة ودقة النتائج.</p>
+                    <h3 style="color: var(--success-glow); margin-top: 20px;">وهنالك حل قيد الإضافة قريباً، وهو إضافة كلاسات تدريبية إضافية:</h3>
+                    <ul style="line-height: 1.8; margin-right: 25px;">
+                        <li>Negative</li>
+                        <li>Background Classes</li>
+                    </ul>
+                    <p>تعني هذه الإضافة تدريب النموذج ليتجاهل الصور إذا لم يوجد ورق نبات طماطم.</p>
+                `
+            }
+        };
+
+        function openCustomModal(key) {
+            if (modalContents[key]) {
+                modalBodyContent.innerHTML = modalContents[key].html;
+                customInfoModal.style.display = 'flex';
+            }
+        }
+
+        function closeCustomModal() {
+            customInfoModal.style.display = 'none';
+        }
+
+        // إغلاق النافذة المنبثقة عند الضغط في أي مكان خارج المربع
+        window.addEventListener('click', function(event) {
+            if (event.target === customInfoModal) {
+                closeCustomModal();
+            }
+        });
     </script>
 </body>
-  </html>
+</html>
